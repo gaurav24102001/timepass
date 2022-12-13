@@ -21,6 +21,18 @@ app.get('/users',(req,res)=>{
     })
 })
 
+app.post('/users',(req,res)=>{
+  pool.query("INSERT INTO users(name, email, occupancy) values ($1, $2, $3)",[req.body.name, req.body.email, req.body.occupancy],(error, result)=>
+  {
+    if(error) throw error;
+    else
+    {
+      res.status(200).send("seccessfully created");
+    }
+    
+  })
+})
+
 
 
 
